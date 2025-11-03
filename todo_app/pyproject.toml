@@ -13,6 +13,8 @@ black = "^25.9.0"
 streamlit = "^1.51.0"
 pandas = "^2.3.3"
 
+[tool.black]
+line-length = 88
 
 [build-system]
 requires = ["poetry-core"]

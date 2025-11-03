@@ -1,7 +1,14 @@
 import os
 import sqlite3
 import pytest
-from src.db import init_db, add_task, get_all_tasks, remove_task, update_task, complete_task
+from src.db import (
+    init_db,
+    add_task,
+    get_all_tasks,
+    remove_task,
+    update_task,
+    complete_task,
+)
 
 TEST_DB = "test_todo.db"
 
@@ -24,13 +31,16 @@ def table_exists(db_path, table_name):
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT name FROM sqlite_master WHERE type='table' AND name=?;", (table_name,)
+            "SELECT name FROM sqlite_master WHERE type='table' AND name=?;",
+            (table_name,),
         )
         return cursor.fetchone() is not None
 
 
 def test_init_db_creates_tasks_table(test_db):
-    assert table_exists(test_db, "tasks"), "Table 'tasks' should exist after initialization"
+    assert table_exists(
+        test_db, "tasks"
+    ), "Table 'tasks' should exist after initialization"
 
 
 def test_add_task_and_retrieve(test_db):
@@ -53,21 +63,21 @@ def test_delete_task(test_db):
 
 
 def test_update_task(test_db):
-    add_task(test_db,"Buy milk")
-    update_task(test_db,1,'Buy bread')
+    add_task(test_db, "Buy milk")
+    update_task(test_db, 1, "Buy bread")
     tasks = get_all_tasks(test_db)
 
     assert len(tasks) == 1
     _, description, status, _ = tasks[0]
-    assert description == 'Buy bread'
+    assert description == "Buy bread"
 
 
 def test_complete_task(test_db):
-    add_task(test_db,"Buy milk")
-    complete_task(test_db,"Buy milk")
+    add_task(test_db, "Buy milk")
+    complete_task(test_db, "Buy milk")
 
     tasks = get_all_tasks(test_db)
     assert len(tasks) == 1
     _, description, status, _ = tasks[0]
-    assert description == 'Buy milk'
-    assert status == 'Done'
+    assert description == "Buy milk"
+    assert status == "Done"
