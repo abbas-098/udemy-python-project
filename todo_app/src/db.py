@@ -1,6 +1,4 @@
 import sqlite3
-from sqlite3 import connect
-
 
 def init_db(db_path="todo.db"):
     conn = sqlite3.connect(db_path)
@@ -30,9 +28,9 @@ def get_all_tasks(db_path):
     return rows
 
 
-def remove_task(db_path, description):
+def remove_task(db_path, id):
     conn = sqlite3.connect(db_path)
-    conn.execute("DELETE FROM tasks WHERE description = ?", (description,))
+    conn.execute("DELETE FROM tasks WHERE id = ?", (id,))
     conn.commit()
     conn.close()
 

@@ -45,7 +45,7 @@ def test_add_task_and_retrieve(test_db):
 
 def test_delete_task(test_db):
     add_task(test_db, "Buy milk")
-    remove_task(test_db, "Buy milk")
+    remove_task(test_db, 1)
 
     tasks = get_all_tasks(test_db)
 
