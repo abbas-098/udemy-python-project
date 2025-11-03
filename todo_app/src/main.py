@@ -1,11 +1,11 @@
-import streamlit as st
-from db import add_task, init_db, get_all_tasks, update_task, remove_task
 import pandas as pd
+import streamlit as st
+
+from db import add_task, get_all_tasks, init_db, remove_task, update_task
 
 # Always initialize the db first
 init_db()
 DB_PATH = "todo.db"
-
 
 st.title("My Todo App")
 

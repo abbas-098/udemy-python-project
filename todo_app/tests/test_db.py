@@ -1,13 +1,15 @@
 import os
 import sqlite3
+
 import pytest
+
 from src.db import (
-    init_db,
     add_task,
+    complete_task,
     get_all_tasks,
+    init_db,
     remove_task,
     update_task,
-    complete_task,
 )
 
 TEST_DB = "test_todo.db"
@@ -38,9 +40,9 @@ def table_exists(db_path, table_name):
 
 
 def test_init_db_creates_tasks_table(test_db):
-    assert table_exists(
-        test_db, "tasks"
-    ), "Table 'tasks' should exist after initialization"
+    assert table_exists(test_db, "tasks"), (
+        "Table 'tasks' should exist after initialization"
+    )
 
 
 def test_add_task_and_retrieve(test_db):

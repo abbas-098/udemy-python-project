@@ -1,0 +1,6 @@
+.idea*
+todo_app/.idea*
+todo_app/.venv*
+src/__pycache__*
+tests/__pycache__*
+todo_app/*.db

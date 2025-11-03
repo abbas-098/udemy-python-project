@@ -9,12 +9,16 @@ packages = [{include = "todo_app", from = "src"}]
 [tool.poetry.dependencies]
 python = "^3.12"
 pytest = "^8.4.2"
-black = "^25.9.0"
 streamlit = "^1.51.0"
 pandas = "^2.3.3"
+ruff = "^0.14.3"
 
-[tool.black]
+
+[tool.ruff]
 line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I","ARG","UP","B","SIM","N"]
 
 [build-system]
 requires = ["poetry-core"]

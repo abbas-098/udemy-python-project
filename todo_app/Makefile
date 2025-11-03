@@ -4,8 +4,14 @@ test:
 run-webapp:
 	streamlit run src/main.py
 
-ci/fmt:
-	black src tests --check
+ci-fmt:
+	ruff format src tests --check
 
 fmt:
-	black src tests
+	ruff format src tests
+
+ci-lint:
+	ruff check src tests --check
+
+lint:
+	ruff check src tests --fix
